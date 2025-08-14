@@ -158,8 +158,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #    define ASSIMP_API_WINONLY
 #  endif
 #else
-#  define ASSIMP_API __attribute__((visibility("default")))
-#  define ASSIMP_API_WINONLY
+#  ifdef ASSIMP_BUILD_DLL_EXPORT
+#    define ASSIMP_API __attribute__((visibility("default")))
+#    define ASSIMP_API_WINONLY
+#  else
+#    define ASSIMP_API
+#    define ASSIMP_API_WINONLY
+#  endif
 #endif // _WIN32
 
 /**
